@@ -630,6 +630,21 @@
     }
   },
   {
+    "type": "compound_global_decl",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "global_decl",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "compound_statement",
     "named": true,
     "fields": {},
@@ -1190,9 +1205,17 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "attribute",
+          "named": true
+        },
+        {
+          "type": "compound_global_decl",
+          "named": true
+        },
         {
           "type": "const_assert_statement",
           "named": true
@@ -1216,6 +1239,10 @@
         {
           "type": "type_alias_decl",
           "named": true
+        },
+        {
+          "type": "visibility",
+          "named": true
         }
       ]
     }
@@ -1225,9 +1252,13 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "attribute",
+          "named": true
+        },
         {
           "type": "diagnostic_directive",
           "named": true
@@ -1552,6 +1583,10 @@
         "required": true,
         "types": [
           {
+            "type": "*",
+            "named": false
+          },
+          {
             "type": "identifier",
             "named": true
           }
@@ -1610,6 +1645,10 @@
         },
         {
           "type": "import_path",
+          "named": true
+        },
+        {
+          "type": "visibility",
           "named": true
         }
       ]
@@ -2521,10 +2560,6 @@
       "required": false,
       "types": [
         {
-          "type": "attribute",
-          "named": true
-        },
-        {
           "type": "global_decl",
           "named": true
         },
@@ -2797,6 +2832,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "visibility",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "while_statement",
@@ -3121,6 +3161,14 @@
   {
     "type": "preproc_directive",
     "named": true
+  },
+  {
+    "type": "private",
+    "named": false
+  },
+  {
+    "type": "public",
+    "named": false
   },
   {
     "type": "requires",

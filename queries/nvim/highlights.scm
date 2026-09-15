@@ -147,6 +147,11 @@
   "as"
 ] @keyword.import
 
+[
+  "public"
+  "private"
+] @keyword
+
 ; expressions
 
 [

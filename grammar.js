@@ -39,15 +39,16 @@ export default grammar({
     inline: $ => [],
 
     rules: {
-        translation_unit: $ => seq(repeat(choice($.import_statement, $.preproc_bevy_import, $._decorated_global_directive, $._decorated_global_decl))),
+        translation_unit: $ => repeat(choice($.import_statement, $.preproc_bevy_import, $.global_directive, $.global_decl)),
 
         // imports
-        import_statement: $ => seq(repeat($.attribute), 'import', optional($.import_path), $._import_content, ';'),
+        visibility: $ => choice("public", "private"),
+        import_statement: $ => seq(repeat($.attribute), optional($.visibility), 'import', optional($.import_path), $._import_content, ';'),
         import_path: $ => seq(optional($.import_path), $.identifier, '::'), // XXX: how to make this not recursive? couldn't get it to work with repeat1(seq($.identifier, '::'))
         // import_path: $ => repeat1(seq($.identifier, '::')),
         import: $ => choice(seq($.import_path, $._import_content), $.import_item),
         _import_content: $ => choice($.import_item, $.import_collection),
-        import_item: $ => seq(field('name', $.identifier), optional(seq('as', field('rename', $.identifier)))),
+        import_item: $ => seq(field('name', choice($.identifier, "*")), optional(seq('as', field('rename', $.identifier)))),
         import_collection: $ => seq('{', comma($.import, { trail: true }), '}'),
 
         // literals
@@ -74,8 +75,7 @@ export default grammar({
         _template_arg_expression: $ => $._expression,
 
         // directives
-        _decorated_global_directive: $ => seq(repeat($.attribute), $.global_directive),
-        global_directive: $ => choice($.diagnostic_directive, $.enable_directive, $.requires_directive),
+        global_directive: $ => seq(repeat($.attribute), choice($.diagnostic_directive, $.enable_directive, $.requires_directive)),
         diagnostic_directive: $ => seq('diagnostic', $._diagnostic_control, ';'),
         _diagnostic_control: $ => seq('(', field('severity', $._severity_control_name), ',', field('rule', $._diagnostic_rule_name), optional(','), ')'),
         _diagnostic_rule_name: $ => choice($._diagnostic_name_token, seq($._diagnostic_name_token, '.', $._diagnostic_name_token)),
@@ -92,8 +92,8 @@ export default grammar({
         attribute: $ => prec.right(seq('@', field('name', $.identifier), field('arguments', optional($._argument_expression_list)))), // precedence: a parenthesis following an attribute is always part of the attribute.
 
         // declarations
-        _decorated_global_decl: $ => seq(repeat($.attribute), $.global_decl),
-        global_decl: $ => choice(';', $.global_variable_decl, $.global_value_decl, $.type_alias_decl, $.struct_decl, $.function_decl, $.const_assert_statement),
+        global_decl: $ => seq(repeat($.attribute), optional($.visibility), choice(';', $.global_variable_decl, $.global_value_decl, $.type_alias_decl, $.struct_decl, $.function_decl, $.const_assert_statement, $.compound_global_decl)),
+        compound_global_decl: $ => seq("{", repeat($.global_decl), "}"), // WESL extension
 
         // structs
         struct_decl: $ => seq('struct', field('name', $._ident), field('body', $.struct_body)),

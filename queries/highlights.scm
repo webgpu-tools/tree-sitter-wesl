@@ -113,6 +113,7 @@
 [ "var" "let" "const" "override" "struct" ] @keyword.storage.type
 [ "diagnostic" "enable" "requires" ] @keyword.directive
 [ "import" "as" ] @keyword.control.import ; WESL import extension
+[ "public" "private" ] @keyword ; WESL visibility extension
 
 ; expressions
 
