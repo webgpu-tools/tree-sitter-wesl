@@ -1,0 +1,8 @@
+-O0
+-ffunction-sections
+-fdata-sections
+-fPIC
+-m64
+-Wall
+-Wextra
+-mno-omit-leaf-frame-pointer
