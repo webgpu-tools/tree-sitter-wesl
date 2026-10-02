@@ -4,6 +4,7 @@ import Foundation
 import PackageDescription
 
 let dir = Context.packageDirectory
+let dir = Context.packageDirectory
 var sources = ["src/parser.c"]
 if FileManager.default.fileExists(atPath: "\(dir)/src/scanner.c") {
     sources.append("src/scanner.c")

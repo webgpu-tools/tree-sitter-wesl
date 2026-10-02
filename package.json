@@ -1,6 +1,6 @@
 {
 	"name": "tree-sitter-wesl",
-	"version": "1.0.0",
+	"version": "0.1.0",
 	"description": "WESL (WGSL Extended) grammar for tree-sitter",
 	"main": "index.js",
 	"types": "bindings/node",

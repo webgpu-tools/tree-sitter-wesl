@@ -16,7 +16,7 @@ license.text = "MIT"
 name = "tree-sitter-wesl"
 readme = "README.md"
 requires-python = ">=3.10"
-version = "1.0.0"
+version = "0.1.0"
 
 [project.urls]
 Homepage = "https://webgpu-tools/tree-sitter-wesl"

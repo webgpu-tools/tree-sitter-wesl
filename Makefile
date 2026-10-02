@@ -1,6 +1,6 @@
 LANGUAGE_NAME := tree-sitter-wesl
 HOMEPAGE_URL := https://webgpu-tools/tree-sitter-wesl
-VERSION := 1.0.0
+VERSION := 0.1.0
 DESCRIPTION := WESL (WGSL Extended) grammar for tree-sitter
 
 # repository
