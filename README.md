@@ -1,5 +1,10 @@
 # tree-sitter-wesl
 
+<img
+  src="https://img.shields.io/crates/v/tree-sitter-wesl?style=for-the-badge"
+  alt="crates.io tree-sitter-wesl crate"
+/></a>
+
 This repository contains a [tree-sitter](https://tree-sitter.github.io/tree-sitter/) grammar for the WebGPU Shading Language ([WGSL](https://gpuweb.github.io/gpuweb/wgsl/)) with support for [WESL](https://github.com/webgpu-tools) extensions, as well as best-effort support for Bevy ([naga_oil](https://github.com/bevyengine/naga_oil)) extensions and C-style preprocessors.
 
 ## See Also
